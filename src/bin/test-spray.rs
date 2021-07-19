@@ -1,6 +1,4 @@
 use std::env;
-use std::fs::File;
-use std::io::Read;
 use std::path::Path;
 use std::vec::Vec;
 use serde_json::json;

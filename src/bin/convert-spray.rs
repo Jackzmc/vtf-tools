@@ -1,7 +1,5 @@
 use image::DynamicImage;
 use std::env;
-use std::fs::File;
-use std::io::Read;
 use std::path::Path;
 use std::vec::Vec;
 use vtf::Error;
@@ -14,7 +12,6 @@ fn main() -> Result<(), Error> {
         std::process::exit(1)
     }
 
-    let path = Path::new(&args[1]);
     let path = Path::new(&args[1]);
     let mut buf = Vec::new();
     let image = vtf_tools::get_vtf_image(&path, &mut buf)?;
