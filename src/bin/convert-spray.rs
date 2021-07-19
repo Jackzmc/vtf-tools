@@ -15,16 +15,9 @@ fn main() -> Result<(), Error> {
     }
 
     let path = Path::new(&args[1]);
-    if !path.exists() {
-        eprintln!("File does not exist");
-        std::process::exit(1)
-    }
-    let mut file = File::open(path)?;
+    let path = Path::new(&args[1]);
     let mut buf = Vec::new();
-    file.read_to_end(&mut buf)?;
-
-    let vtf = vtf::from_bytes(&mut buf)?;
-    let image = vtf.highres_image.decode(0)?;
+    let image = vtf_tools::get_vtf_image(&path, &mut buf)?;
 
     let destination: String = match args.len() {
         3 => args[2].to_owned(),
