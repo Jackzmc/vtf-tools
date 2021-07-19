@@ -31,8 +31,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let apikey = match std::env::var("SAFESEARCH_API_KEY") {
         Ok(key) => key,
         Err(_) => {
-            eprintln!("Need Google Vision API key environmental variable :'SAFESEARCH_API_KEY'");
-            std::process::exit(1)
+            if args.len() > 2 {
+                args[2].clone()
+            } else {
+                eprintln!("Missing Google Vision API key as environmental variable 'SAFESEARCH_API_KEY' or as second argument, test-spray <input> [apikey]");
+                std::process::exit(1)
+            }
         }
     };
     
