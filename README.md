@@ -20,13 +20,12 @@ Does all the steps above, then sends the base64 to google vision safe browsing a
 
 Requires environment variable `SAFESEARCH_API_KEY` or pass apikey as second parameter
 
-Will return the string value of the "adult", "medical" and "racy" result which generally has values of `UNLIKELY`, `LIKELY`, `VERY_LIKELY` or more.
+Will return the string value of the "adult", "medical" and "racy" result which generally has values of `VERY_UNLIKELY`, `UNLIKELY`, `POSSIBLE`, `LIKELY`, `VERY_LIKELY` and `UNKNOWN` and the numeric form starting from VERY_UNLIKELY (0) to VERY_LIKELY (4) and unknown being -1.
 
 `$ ./test-spray file.vtf [apikey]`
 
 ```
-adult=LIKELY
-racy=VERY_LIKELY
-medical=UNLIKELY
+adult=LIKELY=3
+racy=VERY_LIKELY=4
+medical=UNLIKELY=0
 ```
-

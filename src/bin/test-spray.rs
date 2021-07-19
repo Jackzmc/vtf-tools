@@ -66,6 +66,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .send()?
         .json::<SafeBrowsingResponse>()?;
     let types = &resp.responses[0].safeSearchAnnotation;
-    print!("adult={}\nracy={}\nmedical={}", types.adult, types.racy, types.medical);
+    println!("adult={}={}", types.adult, parse_result(&types.adult));
+    println!("racy={}={}", types.racy, parse_result(&types.racy));
+    println!("medical={}={}", types.medical, parse_result(&types.medical));
     Ok(())
+}
+
+fn parse_result(result: &str) -> i8 {
+    match result {
+        "VERY_UNLIKELY" => 0,
+        "UNLIKELY" => 1,
+        "POSSIBLE" => 2,
+        "LIKELY" => 3,
+        "VERY_LIKELY" => 4,
+        _ => -1
+    }
 }
