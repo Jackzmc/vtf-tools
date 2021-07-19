@@ -88,7 +88,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .json(&req_json)
         .send()?
         .json::<SafeBrowsingResponse>()?;
-
-    print!("{}", resp.responses[0].safeSearchAnnotation.adult);
+    let types = &resp.responses[0].safeSearchAnnotation;
+    print!("adult={}\nracy={}\nmedical={}", types.adult, types.racy, types.medical);
     Ok(())
 }
