@@ -18,10 +18,15 @@ Converts a given file (same as above) to PNG and prints out its base64
 
 Does all the steps above, then sends the base64 to google vision safe browsing api to check for sexual content.
 
-Requires environment variable `SAFESEARCH_API_KEY`
+Requires environment variable `SAFESEARCH_API_KEY` or pass apikey as second parameter
 
-Will return the string value of the "adult" result which generally has values of `UNLIKELY`, `LIKELY`, `VERY_LIKELY` or more
+Will return the string value of the "adult", "medical" and "racy" result which generally has values of `UNLIKELY`, `LIKELY`, `VERY_LIKELY` or more.
 
-`$ ./test-spray file.vtf`
+`$ ./test-spray file.vtf [apikey]`
 
+```
+adult=LIKELY
+racy=VERY_LIKELY
+medical=UNLIKELY
+```
 
